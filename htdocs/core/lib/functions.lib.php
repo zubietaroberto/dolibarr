@@ -3467,6 +3467,37 @@ function get_date_range($date_start,$date_end,$format = '',$outputlangs='')
 
 
 /**
+ * Return firstname and lastname in correct order
+ *
+ * @param	string	$firstname		Firstname
+ * @param	string	$lastname		Lastname
+ * @param	int		$nameorder		-1=Auto, 0=Lastname+Firstname, 1=Firstname+Lastname
+ * @return	string					Firstname + lastname or Lastname + firstname
+ */
+function dolGetFirstLastname($firstname,$lastname,$nameorder=-1)
+{
+	global $conf;
+
+	$ret='';
+	// If order not defined, we use the setup
+	if ($nameorder < 0) $nameorder=(empty($conf->global->MAIN_FIRSTNAME_NAME_POSITION));
+	if ($nameorder)
+	{
+		$ret.=$firstname;
+		if ($firstname && $lastname) $ret.=' ';
+		$ret.=$lastname;
+	}
+	else
+	{
+		$ret.=$lastname;
+		if ($firstname && $lastname) $ret.=' ';
+		$ret.=$firstname;
+	}
+	return $ret;
+}
+
+
+/**
  *	Set event message in dol_events session
  *
  *	@param	mixed	$mesgs			Message string or array
