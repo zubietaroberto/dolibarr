@@ -77,7 +77,7 @@ $sql .= " AND sc.fk_soc = s.rowid";
 $sql .= " AND sc.fk_user = u.rowid";
 $sql .= " ORDER BY u.email ASC, s.rowid ASC";	// Order by email to allow one message per email
 
-print $sql;
+//print $sql;
 $resql=$db->query($sql);
 if ($resql)
 {
@@ -132,7 +132,7 @@ if ($resql)
     }
     else
     {
-        print "No unpaid invoices to companies linked to a particular commercial dolibarr user\n";
+        print "No unpaid invoices (for companies linked to a particular commercial dolibarr user) found\n";
     }
 }
 else
